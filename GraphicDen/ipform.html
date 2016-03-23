@@ -1,0 +1,113 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+  body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      background-image:url('/Users/Sivcan/Desktop/GraphicDen/images/backdropform.jpg');
+      background-size: cover;
+
+  }
+  .margin {margin-bottom: 45px;}
+  .bg-1 {
+      /*background-color: black; /* Red */
+      background-image:url('/Users/Sivcan/Desktop/graphs/GraphicDen/images/backdrop.jpg');
+      background-size:contain;
+      color: #ffffff;
+  }
+  .bg-2 {
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;
+  }
+  .bg-3 {
+      background-color: #ffffff; /* White */
+      color: #555555;
+  }
+  .bg-4 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;
+  }
+
+  .buttonsize
+  {
+     font-size:20px;
+  }
+  </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/Users/Sivcan/Desktop/GraphicDen/index.html">HOME</a></li>
+            <li><a href="/Users/Sivcan/Desktop/GraphicDen/ipform.html">UPLOAD FORM</a></li>
+            <li><a href="#">GRAPHS</a></li>
+            <li><a href="/Users/Sivcan/Desktop/GraphicDen/login.html">LOGIN/SIGN UP</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+<div class="container">
+  <h2>Graphic Den</h2>
+  <form role="form">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="Name" class="form-control" id="Name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+      <label for="type">Type:</label>
+      <input type="type" class="form-control" id="type" placeholder="Enter type">
+    </div>
+<div class="form-group">
+      <label for="X-axis">X-axis attribute:</label>
+      <input type="X-axis" class="form-control" id="X-axis" placeholder="Enter X-axis">
+    </div>
+<div class="form-group">
+      <label for="Y-axis">Y-axis attribute:</label>
+      <input type="Y-axis" class="form-control" id="Y-axis" placeholder="Enter Y-axis">
+    </div>
+<div class="checkbox">
+      </div>
+
+    Upload File (.CSV) :<br>
+    <input type="file" style="font-size:0.65em; font-family:Montserrat;" accept=".csv"></input>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+</body>
+</html>
