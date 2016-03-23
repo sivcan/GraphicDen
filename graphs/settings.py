@@ -56,7 +56,7 @@ ROOT_URLCONF = 'graphs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/Sivcan/Desktop/graphs/GraphicDen/'],
+        'DIRS': ['/Users/Sivcan/Desktop/graphs/static/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,10 +126,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/Users/Sivcan/Desktop/graphs/GraphicDen/static'
+STATIC_ROOT = '/static/'
+
+
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "GraphicDen/images"),
-    'GraphicDen',
-
+    os.path.join(BASE_DIR, "static/images"),
 ]
