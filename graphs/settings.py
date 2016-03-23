@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'blog',
+    'graphs.blog',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'graphs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blogs',
+        'NAME': 'blog',
         'USER': 'ninja',
         'PASSWORD': 'ninja',
         'HOST': 'localhost',
