@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>GraphicDen Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -84,7 +85,7 @@
 
 <div class="container">
   <h2>Graphic Den</h2>
-  <form role="form" method="post">
+  <form role="form" method="post" enctype="multipart/form-data">
      {% csrf_token %}
      {% bootstrap_form form %}
     <!-- <div class="form-group">

@@ -7,12 +7,13 @@ TYPE_CHOICES = (
         ('Line Graph', 'Line Graph'),
         ('Pie Graph','Pie Graph'),
     )
+
 class User(models.Model):
     	name=models.CharField(max_length=30)
     	type_Of_Graph=models.CharField(max_length=10,choices=TYPE_CHOICES,default=1)
         x_Attribute=models.CharField(max_length=10)
         y_Attribute=models.CharField(max_length=10)
-        #Upload_CSV_File=models.FileField(upload_to='/files/')
+        file_csv=models.FileField(upload_to='files/',default='/no-file.csv')
 
     	class Admin:
     				pass
