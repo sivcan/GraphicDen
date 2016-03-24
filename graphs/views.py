@@ -20,3 +20,6 @@ def index(request):
 
 def loginportal(request):
 	return render(request, 'login.html')
+
+def grapher(request):
+	return render(request, 'graph.html')

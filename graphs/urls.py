@@ -18,13 +18,15 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
-from views import index, adder, loginportal
+
+from views import index, adder, loginportal,grapher
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/$',index),
     url(r'^addgraph/$',adder),
     url(r'^login/$',loginportal),
+    url(r'^graph/$',grapher),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
