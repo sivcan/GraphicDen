@@ -1,5 +1,5 @@
 {% load static from staticfiles %}
-
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +12,14 @@
   body {
       font: 20px Montserrat, sans-serif;
       line-height: 1.8;
-      background-image:url('/Users/Sivcan/Desktop/GraphicDen/images/backdropform.jpg');
+      background-image:url('{% static 'backdropform.jpg' %}');
       background-size: cover;
 
   }
   .margin {margin-bottom: 45px;}
   .bg-1 {
       /*background-color: black; /* Red */
-      background-image:url('/Users/Sivcan/Desktop/graphs/GraphicDen/images/backdrop.jpg');
+      background-image:url('{% static 'backdrop.jpg' %}');
       background-size:contain;
       color: #ffffff;
   }
@@ -72,10 +72,10 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/Users/Sivcan/Desktop/GraphicDen/index.html">HOME</a></li>
-            <li><a href="/Users/Sivcan/Desktop/GraphicDen/ipform.html">UPLOAD FORM</a></li>
-            <li><a href="#">GRAPHS</a></li>
-            <li><a href="/Users/Sivcan/Desktop/GraphicDen/login.html">LOGIN/SIGN UP</a></li>
+              <li><a href="http://localhost:8000/index/">HOME</a></li>
+              <li><a href="http://localhost:8000/addgraph/">UPLOAD FORM</a></li>
+              <li><a href="#">GRAPHS</a></li>
+              <li><a href="http://localhost:8000/login/">LOGIN/SIGN UP</a></li>
           </ul>
         </div>
       </div>
@@ -84,8 +84,10 @@
 
 <div class="container">
   <h2>Graphic Den</h2>
-  <form role="form">
-    <div class="form-group">
+  <form role="form" method="post">
+     {% csrf_token %}
+     {% bootstrap_form form %}
+    <!-- <div class="form-group">
       <label for="name">Name:</label>
       <input type="Name" class="form-control" id="Name" placeholder="Enter Name">
     </div>
@@ -105,7 +107,8 @@
       </div>
 
     Upload File (.CSV) :<br>
-    <input type="file" style="font-size:0.65em; font-family:Montserrat;" accept=".csv"></input>
+    <input type="file" style="font-size:0.65em; font-family:Montserrat;" accept=".csv"></input> -->
+    <input type='hidden' name='csrfmiddlewaretoken' value='{{csrf_token}}'>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>

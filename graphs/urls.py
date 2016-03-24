@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from views import index
-
+from views import index, adder, loginportal
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/$',index),
+    url(r'^addgraph/$',adder),
+    url(r'^login/$',loginportal),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
