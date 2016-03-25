@@ -96,7 +96,7 @@ var svg = d3.select("body").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("https://1fichier.com/?gyk1g7ahrk", function(error, data) {
+d3.csv("localhost:8000/Users/Sivcan/Desktop/graphs/static/bardata.csv", function(error, data) {
 
     data.forEach(function(d) {
         d.date = parseDate(d.date);
