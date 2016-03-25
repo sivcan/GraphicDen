@@ -19,7 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
 
-from views import index, adder, loginportal,grapher
+from views import index, adder, loginportal, grapher, converter
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^addgraph/$',adder),
     url(r'^login/$',loginportal),
     url(r'^graph/$',grapher),
+    url(r'^convert/$',converter)
 ]
 
 urlpatterns += staticfiles_urlpatterns()
