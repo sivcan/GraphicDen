@@ -11,6 +11,9 @@ import json
 import os
 
 json_data=[]
+x=""
+y=""
+
 
 def adder(request):
 	if request.method=='POST':
@@ -35,15 +38,23 @@ def grapher(request):
 
 def converter(request):
 	a=User.objects.all()
+	row = a[len(a)-1]
+	row=str(row)
 	p='static/media/'
+	row=row.split(",")
+	x=row[0]
+	y=row[1]
+	p+=row[2]
+	p=p.replace('\n','')
 	jsonfilewr='static/media/files/'
-	p+=str(a[12])
+	print("yolo  " + x + y)
+
 	csvfile = open(p, 'r')
 	jsonfilewr+='djangojson.json'
 	jsonfile = open(jsonfilewr, 'w')
 	#json_data=[]
 	i=1
-	fieldnames = ("date","data3")
+	fieldnames = (x,y)
 	reader = csv.DictReader(csvfile,fieldnames)
 	for row in reader:
 		json.dump(row, jsonfile)
@@ -99,4 +110,4 @@ def hardcode(request):
 	# 	{"date": "113", "data3": "455"},
 	# 	{"date": "114", "data3": "478"}]
 	print(str(json_data))
-	return render(request, "khatterd3.html", { "p" : json.dumps(json_data)})
+	return render(request, "khatterd3.html", { "p" : json.dumps(json_data)})# "x" : x, "y" : y})

@@ -33,7 +33,7 @@
             <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
             <script>
                 function InitChart() {
-                    console.log("" + {{ p|safe }});
+
                     var data = {{ p|safe }};
 
 
@@ -77,10 +77,10 @@
 
                     var lineGen = d3.svg.line()
                         .x(function(d) {
-                            return xScale(d.date);
+                            return xScale(d.time);
                         })
                         .y(function(d) {
-                            return yScale(d.data3);
+                            return yScale(d.velocity);
                         })
                         .interpolate("basis");
 

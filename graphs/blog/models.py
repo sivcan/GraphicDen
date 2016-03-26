@@ -19,4 +19,7 @@ class User(models.Model):
     				pass
 
     	def __str__(self):
-    		return '%s' % (self.file_csv)
+    		return '%s,%s,%s\n' % (self.x_Attribute,self.y_Attribute,self.file_csv)
+
+        # def __str__(self):
+        #     return '%s' % (self.file_csv)
