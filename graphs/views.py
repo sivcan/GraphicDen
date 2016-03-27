@@ -54,14 +54,13 @@ def converter(request):
 	fieldnames = (x,y)
 	reader = csv.DictReader(csvfile,fieldnames)
 	for row in reader:
-		json.dump(row, jsonfile)
+		#json.dump(row, jsonfile)
 		#jsonfile.write(',\n')
 		#print ("" + str(row))
 		if i != 1:
 			json_data.append(row)
 		i=i+1
 
-	print(str(json_data))
 
 	return redirect ('/success/')
 	#return render(request, 'graph.html', {"p":jsonfilewr})
@@ -106,8 +105,28 @@ def hardcode(request):
 	# 	{"date": "112", "data3": "433"},
 	# 	{"date": "113", "data3": "455"},
 	# 	{"date": "114", "data3": "478"}]
+	domain_x_min=99999
+	domain_x_max=0
+	domain_y_min=99999
+	domain_y_max=0
 	x_axis=x
 	y_axis=y
-	print(str(json_data))
+	#Code to find the minimum and maximum domain ranges.
+	for i  in range(0,len(json_data)):
+	    domain_x_max=max(domain_x_max,int(json_data[i][str(x_axis)]))
+
+	for i  in range(0,len(json_data)):
+	    domain_y_max=max(domain_y_max,int(json_data[i][str(y_axis)]))
+
+	for i in range(0,len(json_data)):
+		if int(json_data[i][str(x_axis)]) <= domain_x_min :
+			domain_x_min=int(json_data[i][str(x_axis)])
+
+	for i in range(0,len(json_data)):
+		if int(json_data[i][str(y_axis)]) <= domain_y_min :
+			domain_y_min=int(json_data[i][str(y_axis)])
+
+
 	p=json.dumps(json_data)
 	return render(request, "khatterd3.html", locals())#({"p" : json.dumps(json_data), "x" : x, "y" : y,}))# "x" : x, "y" : y})
+	

@@ -40,7 +40,7 @@
           width:400px;
           height:400px;
           border-radius:50%;
-          /*background-image:url("http://placekitten.com/g/200/400");*/
+          background-image:url("http://placekitten.com/g/200/400");
           display:block;
           background-position:;
       }
@@ -90,10 +90,10 @@
                             bottom: 20,
                             left: 50
                         },
-
-                        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([41, 114]),
-
-                        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([153, 478]),
+                        //41,114
+                        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([{{ domain_x_min }}, {{ domain_x_max }}]),
+                        //153,478
+                        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([{{ domain_y_min }}, {{ domain_y_max }}]),
 
                         xAxis = d3.svg.axis()
                         .scale(xScale),
@@ -101,7 +101,6 @@
                         yAxis = d3.svg.axis()
                         .scale(yScale)
                         .orient("left");
-
 
 
 
@@ -130,8 +129,6 @@
                         .attr('stroke', 'green')
                         .attr('stroke-width', 2)
                         .attr('fill', 'none');
-
-
 
 
                 }
