@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^login/$',loginportal),
     url(r'^convert/$',converter),
     url(r'^success/$',hardcode),
+    url(r'',index)
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -69,12 +69,14 @@ def converter(request):
 
 
 def hardcode(request):
-	domain_x_min=99999
+	domain_x_min=99999999999
 	domain_x_max=0
-	domain_y_min=99999
+	domain_y_min=99999999999
 	domain_y_max=0
 	x_axis=x
 	y_axis=y
+	name_x=x_axis
+	name_y=y_axis
 	#Code to find the minimum and maximum domain ranges.
 	for i  in range(0,len(json_data)):
 	    domain_x_max=max(domain_x_max,int(json_data[i][str(x_axis)]))
