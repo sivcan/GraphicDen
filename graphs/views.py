@@ -11,8 +11,7 @@ import json
 import os
 
 json_data=[]
-x=""
-y=""
+
 
 
 def adder(request):
@@ -31,10 +30,6 @@ def index(request):
 def loginportal(request):
 	return render(request, 'login.html')
 
-def grapher(request):
-	a=User.objects.all()
-	p=a[7]
-	return render(request, 'graph.html', locals())
 
 def converter(request):
 	a=User.objects.all()
@@ -42,12 +37,14 @@ def converter(request):
 	row=str(row)
 	p='static/media/'
 	row=row.split(",")
+	global x
+	global y
 	x=row[0]
 	y=row[1]
 	p+=row[2]
 	p=p.replace('\n','')
 	jsonfilewr='static/media/files/'
-	print("yolo  " + x + y)
+	print("yolo  debugging : " + x + y)
 
 	csvfile = open(p, 'r')
 	jsonfilewr+='djangojson.json'
@@ -109,5 +106,8 @@ def hardcode(request):
 	# 	{"date": "112", "data3": "433"},
 	# 	{"date": "113", "data3": "455"},
 	# 	{"date": "114", "data3": "478"}]
+	x_axis=x
+	y_axis=y
 	print(str(json_data))
-	return render(request, "khatterd3.html", { "p" : json.dumps(json_data)})# "x" : x, "y" : y})
+	p=json.dumps(json_data)
+	return render(request, "khatterd3.html", locals())#({"p" : json.dumps(json_data), "x" : x, "y" : y,}))# "x" : x, "y" : y})
