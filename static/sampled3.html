@@ -85,28 +85,28 @@ var h = 550;
 
 //
 // var dataset = [
-// 	{ key: 0, value: 5 },
-// 	{ key: 1, value: 10 },
-// 	{ key: 2, value: 13 },
-// 	{ key: 3, value: 19 },
-// 	{ key: 4, value: 21 },
-// 	{ key: 5, value: 25 },
-// 	{ key: 6, value: 22 },
-// 	{ key: 7, value: 18 },
-// 	{ key: 8, value: 15 },
-// 	{ key: 9, value: 13 },
-// 	{ key: 10, value: 11 },
-// 	{ key: 11, value: 12 },
-// 	{ key: 12, value: 15 },
-// 	{ key: 13, value: 20 },
-// 	{ key: 14, value: 18 },
-// 	{ key: 15, value: 17 },
-// 	{ key: 16, value: 16 },
-// 	{ key: 17, value: 18 },
-// 	{ key: 18, value: 23 },
-// 	{ key: 19, value: 26 } ];
+// 	{ {{ x_axis }}: 0, {{ y_axis }}: 5 },
+// 	{ {{ x_axis }}: 1, {{ y_axis }}: 10 },
+// 	{ {{ x_axis }}: 2, {{ y_axis }}: 13 },
+// 	{ {{ x_axis }}: 3, {{ y_axis }}: 19 },
+// 	{ {{ x_axis }}: 4, {{ y_axis }}: 21 },
+// 	{ {{ x_axis }}: 5, {{ y_axis }}: 25 },
+// 	{ {{ x_axis }}: 6, {{ y_axis }}: 22 },
+// 	{ {{ x_axis }}: 7, {{ y_axis }}: 18 },
+// 	{ {{ x_axis }}: 8, {{ y_axis }}: 15 },
+// 	{ {{ x_axis }}: 9, {{ y_axis }}: 13 },
+// 	{ {{ x_axis }}: 10, {{ y_axis }}: 11 },
+// 	{ {{ x_axis }}: 11, {{ y_axis }}: 12 },
+// 	{ {{ x_axis }}: 12, {{ y_axis }}: 15 },
+// 	{ {{ x_axis }}: 13, {{ y_axis }}: 20 },
+// 	{ {{ x_axis }}: 14, {{ y_axis }}: 18 },
+// 	{ {{ x_axis }}: 15, {{ y_axis }}: 17 },
+// 	{ {{ x_axis }}: 16, {{ y_axis }}: 16 },
+// 	{ {{ x_axis }}: 17, {{ y_axis }}: 18 },
+// 	{ {{ x_axis }}: 18, {{ y_axis }}: 23 },
+// 	{ {{ x_axis }}: 19, {{ y_axis }}: 26 } ];
 
-var dataset={{ p }}
+var dataset={{ p|safe }};
 
 
 var xScale = d3.scale.ordinal()
@@ -114,11 +114,11 @@ var xScale = d3.scale.ordinal()
 				.rangeRoundBands([0, w], 0.05);
 
 var yScale = d3.scale.linear()
-				.domain([0, d3.max(dataset, function(d) {return d.value;})])
+				.domain([0, d3.max(dataset, function(d) {return d.{{ y_axis }};})])
 				.range([0, h]);
 
-var key = function(d) {
-	return d.key;
+var {{ x_axis }} = function(d) {
+	return d.{{ x_axis }};
 };
 
 //Create SVG element
@@ -129,35 +129,35 @@ var svg = d3.select("body")
 
 //Create bars
 svg.selectAll("rect")
-   .data(dataset, key)
+   .data(dataset, {{ x_axis }})
    .enter()
    .append("rect")
    .attr("x", function(d, i) {
 		return xScale(i);
    })
    .attr("y", function(d) {
-		return h - yScale(d.value);
+		return h - yScale(d.{{ y_axis }});
    })
    .attr("width", xScale.rangeBand())
    .attr("height", function(d) {
-		return yScale(d.value);
+		return yScale(d.{{ y_axis }});
    })
    .attr("fill", function(d) {
-		return "rgb(0, 0, " + (d.value * 10) + ")";
+		return "rgb(0, 0, " + (d.{{ y_axis }} * 10) + ")";
    })
 
 	//Tooltip
 	.on("mouseover", function(d) {
-		//Get this bar's x/y values, then augment for the tooltip
+		//Get this bar's x/y {{ y_axis }}s, then augment for the tooltip
 		var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
 		var yPosition = parseFloat(d3.select(this).attr("y")) + 14;
 
-		//Update Tooltip Position & value
+		//Update Tooltip Position & {{ y_axis }}
 		d3.select("#tooltip")
 			.style("left", xPosition + "px")
 			.style("top", yPosition + "px")
-			.select("#value")
-			.text(d.value);
+			.select("#{{ y_axis }}")
+			.text(d.{{ y_axis }});
 		d3.select("#tooltip").classed("hidden", false)
 	})
 	.on("mouseout", function() {
@@ -167,18 +167,18 @@ svg.selectAll("rect")
 
 //Create labels
 svg.selectAll("text")
-   .data(dataset, key)
+   .data(dataset, {{ x_axis }})
    .enter()
    .append("text")
    .text(function(d) {
-		return d.value;
+		return d.{{ y_axis }};
    })
    .attr("text-anchor", "middle")
    .attr("x", function(d, i) {
 		return xScale(i) + xScale.rangeBand() / 2;
    })
    .attr("y", function(d) {
-		return h - yScale(d.value) + 14;
+		return h - yScale(d.{{ y_axis }}) + 14;
    })
    .attr("font-family", "sans-serif")
    .attr("font-size", "11px")
@@ -190,9 +190,9 @@ var sortBars = function () {
 
     sortItems = function (a, b) {
         if (sortOrder) {
-            return a.value - b.value;
+            return a.{{ y_axis }} - b.{{ y_axis }};
         }
-        return b.value - a.value;
+        return b.{{ y_axis }} - a.{{ y_axis }};
     };
 
     svg.selectAll("rect")
@@ -214,14 +214,14 @@ var sortBars = function () {
     })
         .duration(1000)
         .text(function (d) {
-        return d.value;
+        return d.{{ y_axis }};
     })
         .attr("text-anchor", "middle")
         .attr("x", function (d, i) {
         return xScale(i) + xScale.rangeBand() / 2;
     })
         .attr("y", function (d) {
-        return h - yScale(d.value) + 14;
+        return h - yScale(d.{{ y_axis }}) + 14;
     });
 };
 // Add the onclick callback to the button
@@ -249,20 +249,20 @@ function randomSort() {
     })
         .duration(1000)
         .text(function (d) {
-        return d.value;
+        return d.{{ y_axis }};
     })
         .attr("text-anchor", "middle")
         .attr("x", function (d, i) {
         return xScale(i) + xScale.rangeBand() / 2;
     })
         .attr("y", function (d) {
-        return h - yScale(d.value) + 14;
+        return h - yScale(d.{{ y_axis }}) + 14;
     });
 }
 function reset() {
 	svg.selectAll("rect")
 		.sort(function(a, b){
-			return a.key - b.key;
+			return a.{{ x_axis }} - b.{{ x_axis }};
 		})
 		.transition()
         .delay(function (d, i) {
@@ -275,7 +275,7 @@ function reset() {
 
 	svg.selectAll('text')
         .sort(function(a, b){
-			return a.key - b.key;
+			return a.{{ x_axis }} - b.{{ x_axis }};
 		})
         .transition()
         .delay(function (d, i) {
@@ -283,14 +283,14 @@ function reset() {
     })
         .duration(1000)
         .text(function (d) {
-        return d.value;
+        return d.{{ y_axis }};
     })
         .attr("text-anchor", "middle")
         .attr("x", function (d, i) {
         return xScale(i) + xScale.rangeBand() / 2;
     })
         .attr("y", function (d) {
-        return h - yScale(d.value) + 14;
+        return h - yScale(d.{{ y_axis }}) + 14;
     });
 };
 

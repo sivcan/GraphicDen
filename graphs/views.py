@@ -41,12 +41,14 @@ def converter(request):
 	row=row.split(",")
 	global x
 	global y
+	global type_graph
 	x=row[0]
 	y=row[1]
 	p+=row[2]
+	type_graph=row[3]
 	p=p.replace('\n','')
 	jsonfilewr='static/media/files/'
-	print("yolo  debugging : " + x + y)
+	print("yolo  debugging : " + x + y +" " + type_graph)
 
 	csvfile = open(p, 'r')
 	jsonfilewr+='djangojson.json'
@@ -77,6 +79,7 @@ def hardcode(request):
 	y_axis=y
 	name_x=x_axis
 	name_y=y_axis
+
 	#Code to find the minimum and maximum domain ranges.
 	for i  in range(0,len(json_data)):
 	    domain_x_max=max(domain_x_max,int(json_data[i][str(x_axis)]))
@@ -92,7 +95,13 @@ def hardcode(request):
 		if int(json_data[i][str(y_axis)]) <= domain_y_min :
 			domain_y_min=int(json_data[i][str(y_axis)])
 
-
+	print (str(type_graph))
 	p=json.dumps(json_data)
+
 	clear() #Clears the json_data else the data used to get appended.
-	return render(request, "khatterd3.html", locals())#({"p" : json.dumps(json_data), "x" : x, "y" : y,}))# "x" : x, "y" : y})
+	if 'Bar Graph' in type_graph :
+		return render(request, "sampled3.html", locals())
+	if 'Line Graph' in type_graph :
+		return render(request, "khatterd3.html", locals())
+	if 'Pie Graph' in type_graph : 
+		return render(request, "bard3.html", locals())
