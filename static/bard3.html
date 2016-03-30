@@ -14,7 +14,7 @@
 </head>
 <style>
     body{
-        background-image:url('{% static 'graphdrop5.jpg' %}');
+        background-image:url('{% static 'backdrop2.jpg' %}');
         background-size:cover;
         background-repeat: no-repeat;
         color:white;
@@ -42,6 +42,13 @@
         position: absolute;
         left:380px;
     }
+    #chart {
+        opacity: 0.85;
+        stroke:steelwhite;
+        stroke-width:1.2;
+
+    }
+
 </style>
 
 </head>
@@ -67,14 +74,14 @@
     </div>
   </div>
 </nav>
-
+<br><br><br><br><br><br><br><br>
     <div id="chart"></div>
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
 
-var w = 400;
-var h = 400;
+var w = 650;
+var h = 650;
 var r = h/2;
 var color = d3.scale.category20c();
 //
@@ -83,7 +90,8 @@ var color = d3.scale.category20c();
 // 		          {"label":"Category C", "value":30}];
  var data={{ p|safe }};
 
-var vis = d3.select('#chart').append("svg:svg").data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
+var vis = d3.select('#chart').attr("align","center").append("svg:svg").data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")")
+            ;
 var pie = d3.layout.pie().value(function(d){return d.{{ y_axis }};});
 
 // declare an arc generator function

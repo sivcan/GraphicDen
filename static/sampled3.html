@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +27,17 @@ rect {
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+	stroke:white;
+	/*opacity:0.7;
+	/*stroke-width:1;*/
 }
 rect:hover{
 	fill: orange;
 }
-
+.pos{
+	position: absolute;
+	margin-left: 100px;
+}
 .navbar {
 	font: 20px Montserrat, sans-serif;
 	line-height: 1.8;
@@ -47,7 +54,13 @@ rect:hover{
 	color: #1abc9c !important;
 }
 
-
+body{
+	background-image:url('{% static 'backdrop2.jpg' %}');
+	background-size:cover;
+	background-repeat: no-repeat;
+	color:white;
+	font-family:Monsterrat;
+}
 
 </style>
 </head>
@@ -66,7 +79,7 @@ rect:hover{
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="/index/">HOME</a></li>
 	        <li><a href="/addgraph/">UPLOAD FORM</a></li>
-	        <li><a href="/graph/">GRAPH</a></li>
+	        <li><a href="/convert/">GRAPH</a></li>
 	        <li><a href="/login/">LOGIN/SIGN UP</a></li>
 	      </ul>
 	    </div>
@@ -80,31 +93,9 @@ rect:hover{
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-var w = 800;
+var w = 1000;
 var h = 550;
 
-//
-// var dataset = [
-// 	{ {{ x_axis }}: 0, {{ y_axis }}: 5 },
-// 	{ {{ x_axis }}: 1, {{ y_axis }}: 10 },
-// 	{ {{ x_axis }}: 2, {{ y_axis }}: 13 },
-// 	{ {{ x_axis }}: 3, {{ y_axis }}: 19 },
-// 	{ {{ x_axis }}: 4, {{ y_axis }}: 21 },
-// 	{ {{ x_axis }}: 5, {{ y_axis }}: 25 },
-// 	{ {{ x_axis }}: 6, {{ y_axis }}: 22 },
-// 	{ {{ x_axis }}: 7, {{ y_axis }}: 18 },
-// 	{ {{ x_axis }}: 8, {{ y_axis }}: 15 },
-// 	{ {{ x_axis }}: 9, {{ y_axis }}: 13 },
-// 	{ {{ x_axis }}: 10, {{ y_axis }}: 11 },
-// 	{ {{ x_axis }}: 11, {{ y_axis }}: 12 },
-// 	{ {{ x_axis }}: 12, {{ y_axis }}: 15 },
-// 	{ {{ x_axis }}: 13, {{ y_axis }}: 20 },
-// 	{ {{ x_axis }}: 14, {{ y_axis }}: 18 },
-// 	{ {{ x_axis }}: 15, {{ y_axis }}: 17 },
-// 	{ {{ x_axis }}: 16, {{ y_axis }}: 16 },
-// 	{ {{ x_axis }}: 17, {{ y_axis }}: 18 },
-// 	{ {{ x_axis }}: 18, {{ y_axis }}: 23 },
-// 	{ {{ x_axis }}: 19, {{ y_axis }}: 26 } ];
 
 var dataset={{ p|safe }};
 
@@ -123,9 +114,11 @@ var {{ x_axis }} = function(d) {
 
 //Create SVG element
 var svg = d3.select("body")
+			.attr("align","center")
 			.append("svg")
 			.attr("width", w)
 			.attr("height", h);
+
 
 //Create bars
 svg.selectAll("rect")
@@ -143,7 +136,9 @@ svg.selectAll("rect")
 		return yScale(d.{{ y_axis }});
    })
    .attr("fill", function(d) {
-		return "rgb(0, 0, " + (d.{{ y_axis }} * 10) + ")";
+		//return "rgb(0,0, " + (d.{{ y_axis }} * 10) + ")";
+		return "transparent"
+
    })
 
 	//Tooltip
@@ -296,8 +291,9 @@ function reset() {
 
 </script>
 
-<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="sort" onclick="sortBars()">Sort</button>
-    <button id="reset" onclick="reset()">Reset</button>
+<br><br><br><br><br>
+	<button id="sort" onclick="sortBars()"><font color="black" face="sans-serif"><h4>SORT</h4></font></button>&nbsp;&nbsp;&nbsp;
+    <button id="reset" onclick="reset()"><font color="black" face="sans-serif"><h4>RESET</h4></font></button>
+
 </body>
 </html>
