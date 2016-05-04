@@ -15,6 +15,8 @@ json_data=[]
 def clear():
 	del json_data[:]
 
+def welcome(request):
+	return redirect('http://www.google.com')
 
 def adder(request):
 	if request.method=='POST':
@@ -34,22 +36,24 @@ def loginportal(request):
 
 
 def converter(request):
-	a=User.objects.all()
-	row = a[len(a)-1]
+	a=User.objects.all() #Getting the data from the database.
+	row = a[len(a)-1] 	#Getting the latest value from the database.
 	row=str(row)
 	p='static/media/'
-	row=row.split(",")
+	row=row.split(",") #This seperated the data.
 	global x
 	global y
 	global type_graph
+	global name_of_graph
 	x=row[0]
 	y=row[1]
 	p+=row[2]
 	type_graph=row[3]
+	name_of_graph=row[4]
 	p=p.replace('\n','')
 	jsonfilewr='static/media/files/'
 	print("yolo  debugging : " + x + y +" " + type_graph)
-
+	#Converting the data from CSV format to JSON format. JSON = Javascript Object Notation Formati
 	csvfile = open(p, 'r')
 	jsonfilewr+='djangojson.json'
 	jsonfile = open(jsonfilewr, 'w')
@@ -71,15 +75,15 @@ def converter(request):
 
 
 def hardcode(request):
-	domain_x_min=99999999999
+	domain_x_min=999999999999999999
 	domain_x_max=0
-	domain_y_min=99999999999
+	domain_y_min=999999999999999999
 	domain_y_max=0
 	x_axis=x
 	y_axis=y
 	name_x=x_axis
 	name_y=y_axis
-
+	name_graph=name_of_graph
 	#Code to find the minimum and maximum domain ranges.
 	for i  in range(0,len(json_data)):
 	    domain_x_max=max(domain_x_max,int(json_data[i][str(x_axis)]))
@@ -100,8 +104,8 @@ def hardcode(request):
 
 	clear() #Clears the json_data else the data used to get appended.
 	if 'Bar Graph' in type_graph :
-		return render(request, "sampled3.html", locals())
+		return render(request, "sampled3.html", locals()) #Locals = Sending the variables.
 	if 'Line Graph' in type_graph :
 		return render(request, "khatterd3.html", locals())
-	if 'Pie Graph' in type_graph : 
+	if 'Pie Graph' in type_graph :
 		return render(request, "bard3.html", locals())

@@ -15,7 +15,7 @@
 <style>
     body{
         background-image:url('{% static 'backdrop2.jpg' %}');
-        background-size:cover;
+        background-size:1680px 1080px;
         background-repeat: no-repeat;
         color:white;
         font-family:Monsterrat;
@@ -69,19 +69,19 @@
         <li><a href="/index/">HOME</a></li>
         <li><a href="/addgraph/">UPLOAD FORM</a></li>
         <li><a href="/convert/">GRAPH</a></li>
-        <li><a href="/login/">LOGIN/SIGN UP</a></li>
       </ul>
     </div>
   </div>
 </nav>
-<br><br><br><br><br><br><br><br>
+<br><br>
+<h1 align="center"><u>{{ name_graph }}</u></h1><br>
     <div id="chart"></div>
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
 
-var w = 650;
-var h = 650;
+var w = 600;
+var h = 600;
 var r = h/2;
 var color = d3.scale.category20c();
 //
@@ -117,6 +117,13 @@ arcs.append("svg:text").attr("transform", function(d){
     return data[i].{{ x_axis }};}
 		);
 </script>
+<div class="container">
 
+<div class="yolo" id="up">
+    <h3>Plot :<h3>
+    <h2>Colors : {{ name_x }}</h2>
+    <h2>Quantity : {{ name_y }}</h2><br>
+
+</div>
 </body>
 </html>

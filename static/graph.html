@@ -3,7 +3,6 @@
 
 
 <head>
-
 	<title>GraphicDen Graph</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,7 +57,6 @@
 	        <li><a href="/index/">HOME</a></li>
 	        <li><a href="/addgraph/">UPLOAD FORM</a></li>
 	        <li><a href="/graph/">GRAPHS</a></li>
-	        <li><a href="/login/">LOGIN/SIGN UP</a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -138,5 +136,25 @@ d3.csv("bardata.csv", function(error, data) {
 });
 
 </script>
+<div class="container">
+	<h3>Plot :<h3>
+<div class="yolo" id="up">
 
+	<h2>x-axis : {{ name_x }}</h2>
+	<h2>y-axis : {{ name_y }}</h2><br>
+
+</div>
+</div>
 </body>
+<!--
+<script>
+var x=document.getElementById("up");
+x.innerHTML=x.innerHTML.toUpperCase();
+
+function printer()
+{
+	window.print();
+}
+</script> -->
+
+</html>

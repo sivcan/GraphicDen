@@ -14,11 +14,11 @@
     <style>
         body{
             background-image:url('{% static 'backdrop2.jpg' %}');
-            background-size:cover;
+            background-size:1680px 1080px;
             background-repeat: no-repeat;
             color:white;
             font-family:Monsterrat;
-        }
+            }
 
         .axis path {
             fill: #22264b;
@@ -74,12 +74,12 @@
             <li><a href="/index/">HOME</a></li>
             <li><a href="/addgraph/">UPLOAD FORM</a></li>
             <li><a href="/convert/">GRAPH</a></li>
-            <li><a href="/login/">LOGIN/SIGN UP</a></li>
+
           </ul>
         </div>
       </div>
     </nav>
-
+    <h1 align="center"><u>{{ name_graph }}</u></h1>
     <div class="container">
 
         <div class="jumbotron">
@@ -147,17 +147,17 @@
 
     </div>
     <div class="container">
+
     <div class="yolo" id="up">
-    <h3>PLOT :<h3>
-        <h2>X-axis : {{ name_x }}</h2>
-        <h2>Y-axis : {{ name_y }}</h2><br>
+        <h3>Plot :<h3>
+        <h2>x-axis : {{ name_x }}</h2>
+        <h2>y-axis : {{ name_y }}</h2><br>
 
     </div>
 </div>
-<input type="button" onclick="printer()" value="Print this page"></input>
 </body>
 
-<script>
+<!-- <script>
     var x=document.getElementById("up");
     x.innerHTML=x.innerHTML.toUpperCase();
 
@@ -165,5 +165,5 @@
     {
         window.print();
     }
-</script>
+</script> -->
 </html>

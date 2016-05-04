@@ -6,9 +6,12 @@
     <title>GraphicDen Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+  <!-- <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+  <script src="{% static 'jquery.min.js' %}"></script>
+  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+  <script src="{% static 'bootstrap.min.js' %}"></script>
   <style>
   body {
       font: 20px Montserrat, sans-serif;
@@ -77,7 +80,6 @@
               <li><a href="/index/">HOME</a></li>
   	        <li><a href="/addgraph/">UPLOAD FORM</a></li>
   	        <li><a href="/convert/">GRAPH</a></li>
-  	        <li><a href="/login/">LOGIN/SIGN UP</a></li>
           </ul>
         </div>
       </div>
@@ -90,27 +92,7 @@
   <form role="form" method="post" enctype="multipart/form-data">
      {% csrf_token %}
      {% bootstrap_form form %}
-    <!-- <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="Name" class="form-control" id="Name" placeholder="Enter Name">
-    </div>
-    <div class="form-group">
-      <label for="type">Type:</label>
-      <input type="type" class="form-control" id="type" placeholder="Enter type">
-    </div>
-<div class="form-group">
-      <label for="X-axis">X-axis attribute:</label>
-      <input type="X-axis" class="form-control" id="X-axis" placeholder="Enter X-axis">
-    </div>
-<div class="form-group">
-      <label for="Y-axis">Y-axis attribute:</label>
-      <input type="Y-axis" class="form-control" id="Y-axis" placeholder="Enter Y-axis">
-    </div>
-<div class="checkbox">
-      </div>
 
-    Upload File (.CSV) :<br>
-    <input type="file" style="font-size:0.65em; font-family:Montserrat;" accept=".csv"></input> -->
     <input type='hidden' name='csrfmiddlewaretoken' value='{{csrf_token}}'>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

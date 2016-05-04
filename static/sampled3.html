@@ -12,7 +12,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<style>
 	.axis path,
-.axis line {
+	.axis line {
 	fill: none;
 	stroke: black;
 	shape-rendering: crispEdges;
@@ -56,9 +56,12 @@ rect:hover{
 
 body{
 	background-image:url('{% static 'backdrop2.jpg' %}');
-	background-size:cover;
-	background-repeat: no-repeat;
+	background-size:1680px 1080px;
+	background-repeat:no-repeat ;
 	color:white;
+	font-family:Monsterrat;
+}
+.yolo{
 	font-family:Monsterrat;
 }
 
@@ -80,12 +83,12 @@ body{
 	        <li><a href="/index/">HOME</a></li>
 	        <li><a href="/addgraph/">UPLOAD FORM</a></li>
 	        <li><a href="/convert/">GRAPH</a></li>
-	        <li><a href="/login/">LOGIN/SIGN UP</a></li>
+
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
-
+<h1 align="center"><u>{{ name_graph }}</u></h1>
 </body>
 <br>
 <br>
@@ -94,7 +97,7 @@ body{
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 var w = 1000;
-var h = 550;
+var h = 450;
 
 
 var dataset={{ p|safe }};
@@ -292,8 +295,26 @@ function reset() {
 </script>
 
 <br><br><br><br><br>
-	<button id="sort" onclick="sortBars()"><font color="black" face="sans-serif"><h4>SORT</h4></font></button>&nbsp;&nbsp;&nbsp;
-    <button id="reset" onclick="reset()"><font color="black" face="sans-serif"><h4>RESET</h4></font></button>
+	<input type="button" class="btn btn-primary btn-lg" id="sort" onclick="sortBars()" value="Sort">&nbsp;&nbsp;&nbsp;
+    <input type="button" class="btn btn-primary btn-lg" id="reset" onclick="reset()" value="Reset">
 
+<div class="container">
+
+<div class="yolo" id="up">
+	<h3>Plot :<h3>
+	<h2>x-axis : {{ name_x }}</h2>
+	<h2>y-axis : {{ name_y }}</h2><br>
+</div>
+</div>
 </body>
+<!--
+<script>
+var x=document.getElementById("up");
+x.innerHTML=x.innerHTML.toUpperCase();
+
+function printer()
+{
+	window.print();
+}
+</script> -->
 </html>
